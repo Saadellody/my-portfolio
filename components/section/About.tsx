@@ -6,59 +6,45 @@ import { useIntersectionObserver } from '@/lib/hooks/useIntersectionObserver';
 const EXPERIENCE_DATA = [
   {
     id: 1,
-    title: "Web Developer",
-    company: "HTBS Africa",
-    period: "04/25 - 06/25",
+    title: "Internship - Fullstack Developer",
+    company: "Pepper World, Agadir",
+    period: "03/2025 - 04/2025",
     description:
-      "Development of an enterprise resource planning application (Erpify) using React JS, TypeScript, Express JS, Tailwind, Node JS, and MySQL.",
-  },
-  {
-    id: 2,
-    title: "Web Developer",
-    company: "HTBS Africa",
-    period: "04/24 - 06/24",
-    description:
-      "Development of a treasury management web application (TresoNet) using Laravel, Tailwind, MongoDB, Node JS, and JavaScript.",
-  },
-  {
-    id: 3,
-    title: "Web Developer",
-    company: "ATOS",
-    period: "07/23 - 08/23",
-    description:
-      "Development of a quote management web application (Devis Builder) using HTML, CSS, JavaScript, and MySQL.",
+      "Developed fullstack applications using Laravel and jQuery, focusing on QR code systems, data filtering, and optimizing database performance.",
   },
 ] as const;
 
 const EDUCATION_DATA = [
   {
     id: 1,
-    title: "Professional Bachelor's Degree",
-    institution: "Faculté Polydisciplinaire Sidi Bennour",
-    period: "2024 - 2025",
-    description: "Computer Science and Applied Mathematics.",
+    title: "Bachelor Computer Systems & Web Technology",
+    institution: "EST Sidi Bennour",
+    period: "2025 - 2026",
+    description: "Specializing in the convergence of Software Engineering and Infrastructure, including Cloud Computing and advanced DB administration.",
   },
   {
     id: 2,
-    title: "DUT - Computer Engineering",
-    institution: "Ecole Supérieure de Technologie Sidi Bennour",
-    period: "2022 - 2024",
+    title: "Diploma in Digital Development (Full-Stack)",
+    institution: "ISTA Mirleft",
+    period: "2023 - 2025",
     description:
-      "Training in web development, databases, systems and networks, and computer security.",
+      "Comprehensive training in the software development lifecycle, secure backend architecture, and microservices orchestration.",
   },
 ] as const;
 
 const TECHNOLOGIES = [
-  'REACT',
+  'SPRING BOOT',
   'LARAVEL',
-  'NEXT.JS',
-  'TAILWIND',
+  'REACT',
+  'ANGULAR',
+  'DOCKER',
+  'ORACLE DB',
+  'MONGODB',
   'NODE.JS',
-  'TYPESCRIPT',
-  'MYSQL',
-  'FRAMER MOTION',
-  'GIT',
-  'FIGMA',
+  'PHP',
+  'JAVA',
+  'GIT/GITHUB',
+  'LINUX',
 ] as const;
 
 // Sous-composant pour les items de timeline
@@ -196,7 +182,7 @@ function About() {
       className={`relative w-full flex flex-col justify-center pt-20 pb-30 px-5 lg:px-24 lg:pt-10 lg:pb-30 bg-neutral-50 transition-opacity duration-1000 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
-      aria-label="About Yassir Mastadi"
+      aria-label="About Saad-Eddine El oddy"
     >
       {/* Header Section */}
       <header 
@@ -209,9 +195,9 @@ function About() {
       >
         <div>
           <h1 className="text-5xl text-black lg:text-6xl font-black uppercase tracking-tighter leading-none">
-            YASSIR{" "}
+            SAAD EDDINE{" "}
             <br className="lg:hidden" />
-            <span className="text-transparent stroke-text-black">MASTADI</span>
+            <span className="text-transparent stroke-text-black">EL ODDY</span>
           </h1>
         </div>
         <div className="hidden lg:block" aria-hidden="true">
@@ -234,15 +220,15 @@ function About() {
         >
           <AboutSection
             title="Who Am I?"
-            content="Full-Stack Developer from Morocco with a background in Computer Science. I combine technical expertise with an eye for detail to deliver scalable, enterprise-grade applications."
+            content="A Computer Systems Engineer in the making, currently based in Morocco. I bridge the gap between clean code and robust infrastructure, focusing on the intersection of Software Engineering and System Architecture."
           />
           <AboutSection
             title="What I Do?"
-            content="I build end-to-end web solutions that solve real business problems, from intuitive user interfaces to robust backend systems."
+            content="I architect end-to-end digital solutions. Whether it’s building secure backends with Spring Boot and Laravel or orchestrating microservices with Docker, I focus on creating systems that are as stable as they are scalable."
           />
           <AboutSection
             title="What Drives Me?"
-            content="Transforming complex requirements into elegant solutions with clean, maintainable code and a focus on creating products that truly delight users."
+            content="The challenge of optimization. I’m driven by the 'DevOps' mindset—constantly looking for ways to automate workflows, secure data, and turn complex requirements into high-performance reality."
           />
         </div>
 

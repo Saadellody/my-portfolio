@@ -29,7 +29,7 @@ function Hero() {
         {/* Background Image - Visible uniquement sur LG */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            alt="Yassir Mastadi background"
+            alt="saad-eddine el oddy background"
             src="/ym1.png"
             fill
             className="object-cover lg:object-[100%_30%]"
@@ -48,8 +48,8 @@ function Hero() {
               className="absolute top-4 left-4 pointer-events-auto z-10"
             >
               <Image
-                alt="Yassir Mastadi logo"
-                src="/ym.png"
+                alt="saad-eddine el oddy logo"
+                src="/SE.png"
                 width={50}
                 height={50}
                 priority
@@ -69,8 +69,8 @@ function Hero() {
           <nav className="hidden md:flex md:px-10 lg:px-16 md:mt-0 lg:mt-0 justify-between items-start p-4">
             <Link href="/" className="pointer-events-auto">
               <Image
-                alt="Yassir Mastadi logo"
-                src="/ym.png"
+                alt="saad-eddine el oddy logo"
+                src="/SE.png"
                 width={60}
                 height={60}
                 priority
@@ -96,7 +96,7 @@ function Hero() {
               {/* Title and Content */}
               <div className="w-full lg:max-w-2xl">
                 <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold uppercase leading-[1.1] tracking-tighter text-neutral-50 animate-slideUp">
-                  FULL STACK
+                  Full Stack & Systems Engineer
                   <br />
                   <span className="text-transparent [-webkit-text-stroke:1px_#f5f5f5] [paint-order:stroke_fill]">
                     Developer
@@ -108,9 +108,7 @@ function Hero() {
                   className="text-base md:text-lg text-neutral-100 font-light mt-4 max-w-xl animate-slideUp"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Building robust, scalable web solutions with a focus on clean code
-                  and exceptional user experiences. I transform ideas into powerful
-                  digital products. Based in Morocco.
+                  Building robust, scalable web and system solutions with a focus on clean architecture and high performance. I bridge the gap between software engineering and cloud infrastructure to create powerful digital products. Based in Morocco.
                 </p>
 
                 {/* Download Resume */}
@@ -123,11 +121,11 @@ function Hero() {
                   </p>
                   <div className="flex flex-col gap-2 w-full pointer-events-auto">
                     <Link
-                      href="/files/ENGLISH_CV_YASSIR_MASTADI_FULLSTACK.pdf"
-                      download="Yassir_Mastadi_CV_EN.pdf"
+                      href="/files/Saad-Eddine-El-oddy-English"
+                      download="Saad-Eddine-El-oddy-English.pdf"
                       className="group relative overflow-hidden bg-white text-black px-4 py-3 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
                     >
-                      <span>English Version</span>
+                      <span>English Version</span>  
                       <svg
                         className="w-3 h-3 transition-transform group-hover:translate-y-1"
                         fill="none"
@@ -144,8 +142,8 @@ function Hero() {
                       </svg>
                     </Link>
                     <Link
-                      href="/files/YASSIR_MASTADI_FULLSTACK_CV.pdf"
-                      download="Yassir_Mastadi_CV_FR.pdf"
+                      href="/files/Saad-Eddine-El-oddy-Francais.pdf"
+                      download="YSaad-Eddine-El-oddy-Francais.pdf"
                       className="group px-4 py-3 border border-white/20 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
                     >
                       <span>Français</span>
@@ -169,7 +167,7 @@ function Hero() {
 
                 {/* More About Me */}
                 <div
-                  className="mb-8 w-full lg:max-w-[200px] animate-slideUp pointer-events-auto"
+                  className="mb-8 w-full lg:max-w-50 animate-slideUp pointer-events-auto"
                   style={{ animationDelay: "0.3s" }}
                 >
                   <Link
@@ -202,7 +200,7 @@ function Hero() {
                   style={{ animationDelay: "0.4s" }}
                 >
                   <span className="text-xs font-mono text-gray-500">
-                    © 2025 Yassir Mastadi. All Rights Reserved.
+                    © 2026 Saad-Eddine El oddy. All Rights Reserved.
                   </span>
                 </div>
               </div>

@@ -21,32 +21,33 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Yassir Mastadi | Full Stack Developer",
-  description: "Building robust, scalable web solutions with clean code and exceptional user experiences",
+  title: "Saad Eddine El oddy | Full Stack & Systems Engineer",
+  description: "Building robust, scalable web and system solutions with a focus on clean architecture and high performance.",
   keywords: [
-    "Full Stack Developer",
-    "Web Developer",
-    "TypeScript",
     "Software Engineer",
+    "Full Stack Developer",
+    "Backend Specialist",
+    "Systems & Cloud Integrator",
+    "Web Architect"
   ],
-  authors: [{ name: "Yassir Mastadi" }],
-  creator: "Yassir Mastadi",
-  publisher: "Yassir Mastadi",
+  authors: [{ name: "Saad Eddine El oddy" }],
+  creator: "Saad Eddine El oddy", 
+  publisher: "Saad Eddine El oddy",
   icons: {
     icon: [
-      { url: "/ym.png", type: "image/png", sizes: "32x32" },
+      { url: "/SE.png", type: "image/png", sizes: "32x32" },
       { url: "/ym1.png", type: "image/png", sizes: "180x180" },
     ],
     apple: [{ url: "/ym1.png", sizes: "180x180" }],
-    shortcut: "/ym.png",
+    shortcut: "/SE.png",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yassirmastadi.com",
-    title: "Yassir Mastadi | Full Stack Developer",
-    description: "Building robust, scalable web solutions with clean code and exceptional user experiences",
-    siteName: "Yassir Mastadi",
+    url: "https://saadeddineeloddy.com",
+    title: "Saad Eddine El oddy | Full Stack Developer",
+    description: "Building robust, scalable web and system solutions with a focus on clean architecture and high performance.",
+    siteName: "Saad Eddine El oddy",
     images: [
       {
         url: "/ym1.png",
@@ -57,8 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yassir Mastadi | Full Stack Developer",
-    description: "Building robust, scalable web solutions with clean code and exceptional user experiences",
+    title: "Saad Eddine El oddy | Full Stack & Systems Engineer",
+    description: "Building robust, scalable web and system solutions with a focus on clean architecture and high performance.",
     images: ["/ym1.png"],
   },
 };

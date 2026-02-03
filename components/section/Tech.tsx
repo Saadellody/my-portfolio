@@ -3,44 +3,82 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // Données structurées
+// Data structured specifically from Saad Eddine El oddy's CV
 const TECH_STACK = [
   {
     id: 1,
-    category: 'Front-end',
+    category: 'Full-Stack Web Development',
     color: 'bg-blue-500',
-    technologies: ['React.js', 'JavaScript', 'Tailwind CSS','TypeScript', 'HTML', 'CSS', 'Bootstrap'],
+    technologies: [
+      'React',
+      'Angular',
+      'Laravel',
+      'Node.js',
+      'Express.js',
+      'Spring Boot',
+      'WordPress'
+    ],
   },
   {
     id: 2,
-    category: 'Back-end',
+    category: 'Programming Languages',
     color: 'bg-green-500',
-    technologies: ['Node.js', 'Express.js', 'Laravel', 'PHP', 'Java', 'C', 'C++', 'REST API'],
+    technologies: [
+      'Java',
+      'PHP',
+      'JavaScript',
+      'TypeScript'
+    ],
   },
   {
     id: 3,
-    category: 'Databases',
+    category: 'Databases & Data Modeling',
     color: 'bg-yellow-500',
-    technologies: ['MySQL', 'MongoDB', 'Oracle Database', 'PostgreSQL', 'Firebase'],
+    technologies: [
+      'Oracle Database',
+      'MySQL',
+      'MongoDB',
+      'PL/SQL',
+      'Merise (Data Modeling)',
+      'Database Administration'
+    ],
   },
   {
     id: 4,
-    category: 'Project Management',
+    category: 'Cloud & Virtualization',
     color: 'bg-purple-500',
-    technologies: ['Git', 'Jira', 'GitHub', 'Scrum'],
+    technologies: [
+      'Virtualization',
+      'Docker',
+      'Microservices Architecture',
+      'Cloud Computing Fundamentals'
+    ],
   },
   {
     id: 5,
-    category: 'Software Tools',
+    category: 'Systems & Networking',
     color: 'bg-pink-500',
-    technologies: ['Figma', 'VS Code', 'Postman', 'Canva'],
+    technologies: [
+      'Linux',
+      'Computer Networks Basics',
+      'System Configuration',
+      'Access Control & Permissions'
+    ],
   },
   {
     id: 6,
-    category: 'Architecture & Security',
+    category: 'Engineering Practices & Tools',
     color: 'bg-red-500',
-    technologies: ['UML', 'Merise', 'MVC Pattern', 'JWT Auth', 'Computer Security'],
+    technologies: [
+      'Git & GitHub',
+      'Agile / Scrum',
+      'UML Modeling',
+      'Software Design Principles',
+      'Unit Testing Basics'
+    ],
   },
 ] as const;
+
 
 // Hook pour Intersection Observer
 function useIntersectionObserver(threshold = 0.1) {
