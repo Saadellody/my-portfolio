@@ -166,6 +166,7 @@ function Hero() {
                 </div>
 
                 {/* More About Me */}
+                {/* hdjfdhkj */}
                 <div
                   className="mb-8 w-full lg:max-w-50 animate-slideUp pointer-events-auto"
                   style={{ animationDelay: "0.3s" }}
