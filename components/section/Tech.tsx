@@ -126,9 +126,8 @@ const TechCard = React.memo(({ category, technologies, color, index }: TechCardP
   return (
     <article
       ref={ref}
-      className={`flex flex-col group relative p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 mt-2 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`flex flex-col group relative p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 mt-2 ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       style={{
         transitionDelay: isVisible ? `${index * 100}ms` : '0ms',
       }}
@@ -176,9 +175,8 @@ function Tech() {
         {/* Header */}
         <header
           ref={headerRef}
-          className={`flex-shrink-0 mb-10 border-b border-white/20 pb-4 flex items-end justify-between transition-all duration-700 ${
-            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`flex-shrink-0 mb-10 border-b border-white/20 pb-4 flex items-end justify-between transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           <div>
             <h2 className="text-5xl lg:pt-4 lg:text-6xl font-black uppercase tracking-tighter leading-none text-white">

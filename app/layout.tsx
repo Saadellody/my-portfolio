@@ -21,6 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://saadeddineeloddy.com"),
   title: "Saad Eddine El oddy | Full Stack & Systems Engineer",
   description: "Building robust, scalable web and system solutions with a focus on clean architecture and high performance.",
   keywords: [
@@ -31,14 +32,14 @@ export const metadata: Metadata = {
     "Web Architect"
   ],
   authors: [{ name: "Saad Eddine El oddy" }],
-  creator: "Saad Eddine El oddy", 
+  creator: "Saad Eddine El oddy",
   publisher: "Saad Eddine El oddy",
   icons: {
     icon: [
       { url: "/SE.png", type: "image/png", sizes: "32x32" },
-      { url: "/ym1.png", type: "image/png", sizes: "180x180" },
+      { url: "/SE.png", type: "image/png", sizes: "180x180" },
     ],
-    apple: [{ url: "/ym1.png", sizes: "180x180" }],
+    apple: [{ url: "/SE.png", sizes: "180x180" }],
     shortcut: "/SE.png",
   },
   openGraph: {
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "Saad Eddine El oddy",
     images: [
       {
-        url: "/ym1.png",
+        url: "/SE.png",
         width: 1200,
         height: 630,
       },
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saad Eddine El oddy | Full Stack & Systems Engineer",
     description: "Building robust, scalable web and system solutions with a focus on clean architecture and high performance.",
-    images: ["/ym1.png"],
+    images: ["/SE.png"],
   },
 };
 
@@ -72,14 +73,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          as="font"
-          href="/fonts/geist.woff2"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <meta name="theme-color" content="#000000" />

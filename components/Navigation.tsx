@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from "react";
+// Re-verified content: Saad Eddine El oddy
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,17 +27,17 @@ function Navigation() {
       <nav className="hidden md:block fixed max-w-md top-4 left-1/2 -translate-x-1/2 pointer-events-none z-50">
         <ul
           className="
-    justify-center items-center
-    flex gap-8 px-10 py-2
-    bg-neutral-900/70
-    text-[12px] tracking-widest font-bold
-    font-mono
-    shadow-[0_0_20px_rgba(255,120,60,0.6)]
-    [clip-path:polygon(0%_0%,100%_0%,96%_100%,4%_100%)]
-    backdrop-blur-sm
-    transition-all duration-300 ease-in-out
-    hover:shadow-[0_0_30px_rgba(255,120,60,0.8)]
-  "
+            justify-center items-center
+            flex gap-8 px-10 py-2
+            bg-neutral-900/70
+            text-[12px] tracking-widest font-bold
+            font-mono
+            shadow-[0_0_20px_rgba(255,120,60,0.6)]
+            [clip-path:polygon(0%_0%,100%_0%,96%_100%,4%_100%)]
+            backdrop-blur-sm
+            transition-all duration-300 ease-in-out
+            hover:shadow-[0_0_30px_rgba(255,120,60,0.8)]
+          "
         >
           {navItems.map((item, index) => (
             <li
@@ -89,11 +90,10 @@ function Navigation() {
         <div
           className={`
           overflow-hidden transition-all duration-300 ease-in-out will-change-[opacity,max-height]
-          ${
-            isMenuOpen
+          ${isMenuOpen
               ? "opacity-100 max-h-[400px] mb-4"
               : "opacity-0 max-h-0 mb-0"
-          }
+            }
         `}
         >
           <nav className="flex flex-col gap-4 items-center pt-2">
@@ -131,8 +131,8 @@ function Navigation() {
             {/* Avatar */}
             <div className="h-15 w-15 rounded-lg bg-transparent overflow-hidden relative shrink-0">
               <Image
-                src="/ym1.png"
-                alt="Yassir Mastadi profile picture"
+                src="/saad3.png"
+                alt="Saad Eddine El oddy profile picture"
                 fill
                 sizes="60px"
                 className="object-cover object-center"
@@ -145,7 +145,7 @@ function Navigation() {
                 href="/"
                 className="text-sm sm:text-base font-semibold text-neutral-100 uppercase truncate hover:text-orange-500 transition-colors"
               >
-                Yassir Mastadi
+                Saad Eddine El oddy
               </Link>
 
               {/* Scrolling Text */}

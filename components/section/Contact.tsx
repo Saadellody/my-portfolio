@@ -66,8 +66,8 @@ function Contact() {
   const contactMethods = [
     {
       label: "Email",
-      value: "yassirmastadi@gmail.com",
-      href: "mailto:yassirmastadi@gmail.com",
+      value: "eloddysaadeddine@gmail.com",
+      href: "mailto:eloddysaadeddine@gmail.com",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +87,8 @@ function Contact() {
     },
     {
       label: "Phone",
-      value: "+212 614173163",
-      href: "tel:+212614173163",
+      value: "+212 659 354 715",
+      href: "tel:+212659354715",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -108,8 +108,8 @@ function Contact() {
     },
     {
       label: "Location",
-      value: "Casablanca, Morocco",
-      href: "https://maps.google.com/?q=Casablanca,Morocco",
+      value: "Tiznit, Morocco",
+      href: "https://maps.google.com/?q=Tiznit,Morocco",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,8 +135,8 @@ function Contact() {
   ];
 
   const socialLinks = [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/yassir-mastadi/" },
-    { label: "GitHub", href: "https://github.com/iamy4sser" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/saad-eddine-el-oddy" },
+    { label: "GitHub", href: "https://github.com/Saadellody" },
   ];
 
   return (
@@ -316,7 +316,7 @@ function Contact() {
       {/* Footer */}
       <div className="mt-12 lg:mt-0 w-full text-center lg:text-left mb-4">
         <span className="text-[10px] font-mono text-neutral-600">
-          © 2025 Yassir Mastadi. All Rights Reserved.
+          © 2026 Saad Eddine El oddy. All Rights Reserved.
         </span>
       </div>
     </div>

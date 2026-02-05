@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,20 +25,21 @@ function StatusBadge({ className = "" }: { className?: string }) {
 function Hero() {
   return (
     <>
-      <div className="bg-neutral-900 relative w-full h-screen lg:h-full md:[clip-path:polygon(4rem_0px,calc(50%_-_15rem)_0px,calc(50%_-_13.5rem)_2.75rem,calc(50%_+_13.5rem)_2.75rem,calc(50%_+_15rem)_0px,calc(100%_-_4rem)_0px,100%_4rem,100%_calc(100%_-_4rem),calc(100%_-_4rem)_100%,4rem_100%,0px_calc(100%_-_4rem),0px_4rem)] p-2 overflow-hidden">
-        
+      <div className="bg-neutral-900 relative w-full min-h-screen lg:h-full md:[clip-path:polygon(4rem_0px,calc(50%_-_15rem)_0px,calc(50%_-_13.5rem)_2.75rem,calc(50%_+_13.5rem)_2.75rem,calc(50%_+_15rem)_0px,calc(100%_-_4rem)_0px,100%_4rem,100%_calc(100%_-_4rem),calc(100%_-_4rem)_100%,4rem_100%,0px_calc(100%_-_4rem),0px_4rem)] p-2 overflow-hidden">
+
         {/* Background Image - Visible uniquement sur LG */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
             alt="saad-eddine el oddy background"
-            src="/ym1.png"
+            src="/saad3.png"
             fill
-            className="object-cover lg:object-[100%_30%]"
+            className="object-cover object-[50%_20%] md:object-[70%_50%] scale-100"
             priority
             quality={75}
+            sizes="100vw"
           />
-          {/* Overlay pour assombrir l'image */}
-          <div className="absolute inset-0 bg-black/40" />
+          {/* Light overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-black/70 via-black/50 to-black/30 md:from-transparent md:via-black/20 md:to-black/50" />
         </div>
 
         <div className="relative w-full h-full rounded-2xl py-2 z-10">
@@ -86,7 +88,7 @@ function Hero() {
           </nav>
 
           {/* Hero Content */}
-          <div className="flex flex-col items-start justify-center mt-20 md:mt-0 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
+          <div className="flex flex-col items-start justify-end md:justify-center pb-24 md:pb-0 mt-auto md:mt-0 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 min-h-[80vh] md:min-h-0">
             {/* Status Badge */}
             <StatusBadge className="mt-2 mb-4 animate-fadeIn" />
 
@@ -97,10 +99,6 @@ function Hero() {
               <div className="w-full lg:max-w-2xl">
                 <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold uppercase leading-[1.1] tracking-tighter text-neutral-50 animate-slideUp">
                   Full Stack & Systems Engineer
-                  <br />
-                  <span className="text-transparent [-webkit-text-stroke:1px_#f5f5f5] [paint-order:stroke_fill]">
-                    Developer
-                  </span>
                 </h1>
 
                 {/* Description */}
@@ -121,11 +119,11 @@ function Hero() {
                   </p>
                   <div className="flex flex-col gap-2 w-full pointer-events-auto">
                     <Link
-                      href="/files/Saad-Eddine-El-oddy-English"
+                      href="/files/Saad-Eddine-El-oddy-English.pdf"
                       download="Saad-Eddine-El-oddy-English.pdf"
                       className="group relative overflow-hidden bg-white text-black px-4 py-3 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
                     >
-                      <span>English Version</span>  
+                      <span>English Version</span>
                       <svg
                         className="w-3 h-3 transition-transform group-hover:translate-y-1"
                         fill="none"
@@ -166,7 +164,6 @@ function Hero() {
                 </div>
 
                 {/* More About Me */}
-                {/* hdjfdhkj */}
                 <div
                   className="mb-8 w-full lg:max-w-50 animate-slideUp pointer-events-auto"
                   style={{ animationDelay: "0.3s" }}

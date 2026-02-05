@@ -57,8 +57,8 @@ interface TimelineItemProps {
 
 const TimelineItem = React.memo(({ title, subtitle, period, description }: TimelineItemProps) => (
   <article className="group relative pl-6 border-l border-gray-200 hover:border-black transition-colors duration-300">
-    <span 
-      className="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-white border-2 border-black rounded-full group-hover:bg-black transition-colors" 
+    <span
+      className="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-white border-2 border-black rounded-full group-hover:bg-black transition-colors"
       aria-hidden="true"
     />
     <h4 className="text-base text-black font-bold">{title}</h4>
@@ -93,13 +93,13 @@ AboutSection.displayName = "AboutSection";
 
 // Sous-composant TechMarquee optimisé
 const TechMarquee = React.memo(() => (
-  <div 
+  <div
     className="group absolute bottom-0 left-0 w-full py-4 border-t border-black/5 bg-neutral-50 overflow-hidden flex items-center z-20 pointer-events-auto"
     role="region"
     aria-label="Technologies marquee"
   >
-    <div 
-      className="flex animate-scroll group-hover:[animation-play-state:paused] whitespace-nowrap pointer-events-auto" 
+    <div
+      className="flex animate-scroll group-hover:[animation-play-state:paused] whitespace-nowrap pointer-events-auto"
       aria-label="Technologies I use"
     >
       {/* First set */}
@@ -111,7 +111,7 @@ const TechMarquee = React.memo(() => (
           <span className="text-xl text-black/20" aria-hidden="true">●</span>
         </div>
       ))}
-      
+
       {/* Duplicate for seamless loop */}
       {TECHNOLOGIES.map((tech) => (
         <div key={`${tech}-dup`} className="flex items-center">
@@ -131,7 +131,7 @@ TechMarquee.displayName = "TechMarquee";
 function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  
+
   // Hooks pour chaque section
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver({
     threshold: 0.2,
@@ -176,22 +176,20 @@ function About() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="about"
-      className={`relative w-full flex flex-col justify-center pt-20 pb-30 px-5 lg:px-24 lg:pt-10 lg:pb-30 bg-neutral-50 transition-opacity duration-1000 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`relative w-full flex flex-col justify-center pt-20 pb-30 px-5 lg:px-24 lg:pt-10 lg:pb-30 bg-neutral-50 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       aria-label="About Saad-Eddine El oddy"
     >
       {/* Header Section */}
-      <header 
+      <header
         ref={headerRef}
-        className={`border-b-2 border-black pt-4 pb-4 mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4 transition-all duration-700 ${
-          headerVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-10'
-        }`}
+        className={`border-b-2 border-black pt-4 pb-4 mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4 transition-all duration-700 ${headerVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-10'
+          }`}
       >
         <div>
           <h1 className="text-5xl text-black lg:text-6xl font-black uppercase tracking-tighter leading-none">
@@ -210,13 +208,12 @@ function About() {
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 h-auto lg:h-full pointer-events-auto pb-6">
         {/* Left Column - About */}
-        <div 
+        <div
           ref={leftColumnRef}
-          className={`lg:col-span-5 flex flex-col gap-4 justify-start lg:justify-center transition-all duration-700 delay-200 ${
-            leftColumnVisible 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-10'
-          }`}
+          className={`lg:col-span-5 flex flex-col gap-4 justify-start lg:justify-center transition-all duration-700 delay-200 ${leftColumnVisible
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 -translate-x-10'
+            }`}
         >
           <AboutSection
             title="Who Am I?"
@@ -235,13 +232,12 @@ function About() {
         {/* Right Column - Experience & Education */}
         <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Experience */}
-          <div 
+          <div
             ref={experienceRef}
-            className={`space-y-5 transition-all duration-700 delay-200 ${
-              experienceVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
+            className={`space-y-5 transition-all duration-700 delay-200 ${experienceVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10'
+              }`}
           >
             <h2 className="font-mono text-xs text-gray-400 uppercase border-b border-gray-200 pb-2">
               My Journey
@@ -258,13 +254,12 @@ function About() {
           </div>
 
           {/* Education */}
-          <div 
+          <div
             ref={educationRef}
-            className={`space-y-5 transition-all duration-700 delay-200 ${
-              educationVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
+            className={`space-y-5 transition-all duration-700 delay-200 ${educationVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10'
+              }`}
           >
             <h2 className="font-mono text-xs text-gray-400 uppercase border-b border-gray-200 pb-2">
               Education

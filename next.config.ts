@@ -43,10 +43,12 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: [
           // Performance headers
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
+          // {
+          //   key: "Cache-Control",
+          //   value: "public, max-age=31536000, immutable",
+          // },
+          // Force Clear Cache - REMOVED
+          // Sécurité headers
           // Sécurité headers
           {
             key: "X-Content-Type-Options",

@@ -1,16 +1,29 @@
 import nodemailer from 'nodemailer';
 
 // Configuration du transporteur Gmail
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+let transporter: any = null;
+
+if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+  transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+}
 
 export async function POST(request: Request) {
   try {
+    // Vérification des variables d'environnement en premier
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      console.error('Gmail environment variables are not configured');
+      return Response.json(
+        { error: "Email service is not configured. Please set up GMAIL_USER and GMAIL_APP_PASSWORD environment variables." },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, subject, message } = body;
 
@@ -28,15 +41,6 @@ export async function POST(request: Request) {
       return Response.json(
         { error: "Email invalide" },
         { status: 400 }
-      );
-    }
-
-    // Vérification des variables d'environnement
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-      console.error('Variables d\'environnement Gmail manquantes');
-      return Response.json(
-        { error: "Configuration serveur incorrecte" },
-        { status: 500 }
       );
     }
 
@@ -59,7 +63,7 @@ export async function POST(request: Request) {
     // Envoi de l'email
     const info = await transporter.sendMail({
       from: process.env.GMAIL_USER,
-      to: process.env.CONTACT_EMAIL_TO || 'yassirmastadi@gmail.com',
+      to: process.env.CONTACT_EMAIL_TO || 'eloddysaadeddine@gmail.com',
       replyTo: email,
       subject: `Nouveau message de contact: ${subject}`,
       html: htmlContent,
