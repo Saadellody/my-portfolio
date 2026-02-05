@@ -33,13 +33,14 @@ function Hero() {
             alt="saad-eddine el oddy background"
             src="/saad3.png"
             fill
-            className="object-cover object-[50%_20%] md:object-[70%_50%] scale-100"
+            className="object-cover object-[50%_20%] md:object-[60%_30%] lg:object-[55%_25%] scale-100"
             priority
-            quality={75}
+            quality={85}
             sizes="100vw"
           />
-          {/* Light overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-black/70 via-black/50 to-black/30 md:from-transparent md:via-black/20 md:to-black/50" />
+          {/* Overlay gradient - mobile: bottom-to-top dark, desktop: left side dark with subtle orange tint */}
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/70 via-black/50 to-black/30 md:from-black/80 md:via-black/40 md:to-transparent" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent" />
         </div>
 
         <div className="relative w-full h-full rounded-2xl py-2 z-10">
