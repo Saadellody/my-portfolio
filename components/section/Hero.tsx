@@ -31,9 +31,9 @@ function Hero() {
         <div className="absolute inset-0 overflow-hidden">
           <Image
             alt="saad-eddine el oddy background"
-            src="/saad3.png"
+            src="/saad.png"
             fill
-            className="object-cover object-[50%_20%] md:object-[60%_30%] lg:object-[55%_25%] scale-100"
+            className="object-cover object-[50%_0%] md:object-[60%_15%] lg:object-[55%_10%] scale-100"
             priority
             quality={85}
             sizes="100vw"
@@ -99,7 +99,7 @@ function Hero() {
               {/* Title and Content */}
               <div className="w-full lg:max-w-2xl">
                 <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold uppercase leading-[1.1] tracking-tighter text-neutral-50 animate-slideUp">
-                  Full Stack & Systems Engineer
+                  Full Stack Developer
                 </h1>
 
                 {/* Description */}

@@ -131,7 +131,7 @@ function Navigation() {
             {/* Avatar */}
             <div className="h-15 w-15 rounded-lg bg-transparent overflow-hidden relative shrink-0">
               <Image
-                src="/saad3.png"
+                src="/saad.png"
                 alt="Saad Eddine El oddy profile picture"
                 fill
                 sizes="60px"
