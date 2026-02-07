@@ -2,22 +2,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIntersectionObserver } from '@/lib/hooks/useIntersectionObserver';
 
 // Données des projets
 const PROJECTS_DATA = [
   {
     id: 1,
-    name: 'Erpify',
-    category: 'Enterprise Resource Planning',
+    name: 'Bibliotheque',
+    category: 'Library Management System',
     description:
-      'ERPIFY is a comprehensive ERP solution designed to streamline business operations. Built with a modern tech stack, it enables companies to manage resources, track workflows, and optimize productivity across departments.',
-    technologies: ['React.js', 'TypeScript', 'Express.js', 'Tailwind', 'Node.js', 'MySQL'],
-    image: '/img/erpify.png',
-    color: 'bg-indigo-600',
-    github: 'https://github.com/iamy4sser/Erpify',
-    isConfidential: true,
-  },
+      'Bibliotheque is a Laravel-based library management application. It provides book CRUD, categories, user management, REST API endpoints (with JWT auth), event/listener logging, database factories & seeders, and a Blade/Bootstrap frontend with asset pipeline via Laravel Mix.',
+    technologies: ['PHP', 'Laravel 9', 'Blade', 'MySQL', 'Redis (predis)', 'JavaScript', 'Laravel Mix (Webpack)', 'Composer', 'tymon/jwt-auth', 'PHPUnit'],
+    images: [], // leave empty — you will add images
+    color: 'bg-emerald-600',
+    github: 'https://github.com/Saadellody/Bibliotheque',
+  }
   {
     id: 2,
     name: 'TresoNet',
@@ -25,15 +26,114 @@ const PROJECTS_DATA = [
     description:
       'TresoNet is a robust treasury management system that helps organizations track cash flow, manage financial operations, and generate real-time reports for better financial decision-making.',
     technologies: ['Laravel', 'Tailwind', 'MongoDB', 'Node.js', 'JavaScript'],
-    image: '/img/tresonet.png',
+    images: ['/img/tresonet.png'], // Modifié: tableau d'images
     color: 'bg-emerald-600',
     github: 'https://github.com/iamy4sser/TresoNet',
-    isConfidential: true,
   },
 ] as const;
 
-// Constantes pour les hauteurs (pour cohérence)
-const HEADER_HEIGHT = 120; // Hauteur du header en px
+// Composant ImageSlider pour gérer plusieurs photos
+interface ImageSliderProps {
+  images: readonly string[];
+  projectName: string;
+  isPriority?: boolean;
+}
+
+const ImageSlider = ({ images, projectName, isPriority }: ImageSliderProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  if (images.length <= 1) {
+    return (
+      <div className="relative w-full h-full">
+        <Image
+          src={images[0]}
+          alt={projectName}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, 60vw"
+          priority={isPriority}
+          quality={90}
+          loading={isPriority ? "eager" : "lazy"}
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect fill='%23222' width='800' height='600'/%3E%3C/svg%3E"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="relative w-full h-full group outline-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src={images[currentIndex]}
+            alt={`${projectName} - ${currentIndex + 1}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 60vw"
+            priority={isPriority && currentIndex === 0}
+            quality={95}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect fill='%23222' width='800' height='600'/%3E%3C/svg%3E"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Controls */}
+      <div className={`absolute inset-0 flex items-center justify-between px-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+        <button
+          onClick={prevImage}
+          className="p-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all"
+          aria-label="Previous image"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={nextImage}
+          className="p-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all"
+          aria-label="Next image"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+      </div>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-6 bg-white' : 'bg-white/40 hover:bg-white/60'
+              }`}
+            aria-label={`Go to image ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 // Composant pour une carte de projet (mobile)
 interface ProjectCardProps {
@@ -50,37 +150,28 @@ const ProjectCard = React.memo(({ project, index }: ProjectCardProps) => {
   return (
     <article
       ref={ref}
-      className={`flex flex-col gap-6 transition-all duration-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}
+      className={`flex flex-col gap-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}
       style={{
         transitionDelay: isVisible ? `${index * 100}ms` : '0ms',
       }}
     >
-      {/* Image */}
-      <div 
-        className="relative w-full h-[300px] overflow-hidden rounded-lg border border-white/10 bg-cover bg-center"
+      {/* Container Image avec Slider */}
+      <div
+        className="relative w-full h-[350px] overflow-hidden rounded-lg border border-white/10 bg-cover bg-center"
         style={{
           backgroundImage: "url('/img/bg-project.jpg')",
         }}
       >
-        <Image
-          src={project.image}
-          alt={project.name}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          quality={90}
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23222' width='400' height='300'/%3E%3C/svg%3E"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className={`absolute top-4 left-4 w-1 h-8 ${project.color}`} />
+        <div className="absolute inset-0 flex items-center justify-center p-4">
+          <ImageSlider images={project.images} projectName={project.name} />
+        </div>
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        <div className={`absolute top-4 left-4 w-1 h-8 ${project.color} z-10`} />
       </div>
 
       {/* Content */}
-      <div>
+      <div className="px-2">
         <div className="flex items-center justify-between mb-2">
           <p className="font-mono text-xs text-gray-500 uppercase tracking-widest">
             {String(index + 1).padStart(2, '0')} / {project.category}
@@ -108,23 +199,16 @@ const ProjectCard = React.memo(({ project, index }: ProjectCardProps) => {
         </div>
 
         {/* Link */}
-        {project.isConfidential ? (
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase text-gray-600">
-            <span>Available Soon</span>
-            <span className="text-[8px] border border-white/10 px-1 rounded">
-              Confidential
-            </span>
-          </div>
-        ) : (
+        <div className="relative z-10">
           <Link
             href={project.github!}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors"
           >
-            <span>View Code</span>
+            <span>{project.github}</span>
           </Link>
-        )}
+        </div>
       </div>
     </article>
   );
@@ -132,7 +216,7 @@ const ProjectCard = React.memo(({ project, index }: ProjectCardProps) => {
 
 ProjectCard.displayName = 'ProjectCard';
 
-// Composant Desktop Project - SIMPLIFIÉ
+// Composant Desktop Project
 const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps & { total: number }) => {
   return (
     <div className="w-full h-full snap-start snap-always flex flex-shrink-0 p-12">
@@ -168,24 +252,15 @@ const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps &
 
           {/* Link */}
           <div className="pt-2 relative z-50 pointer-events-auto">
-            {project.isConfidential ? (
-              <div className="inline-flex items-center gap-2 text-sm font-bold uppercase text-gray-600">
-                <span>Available Soon</span>
-                <span className="text-xs border border-white/10 px-2 py-1 rounded">
-                  Confidential
-                </span>
-              </div>
-            ) : (
-              <Link
-                href={project.github!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors cursor-pointer"
-              >
-                <div className="w-12 h-[1px] bg-white group-hover:bg-blue-400 group-hover:w-16 transition-all" />
-                <span>View Code</span>
-              </Link>
-            )}
+            <Link
+              href={project.github!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors cursor-pointer"
+            >
+              <div className="w-12 h-[1px] bg-white group-hover:bg-blue-400 group-hover:w-16 transition-all" />
+              <span>{project.github}</span>
+            </Link>
           </div>
         </div>
 
@@ -195,33 +270,23 @@ const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps &
         </div>
       </div>
 
-      {/* Right side - Image */}
-      <div 
+      {/* Right side - Image Slider */}
+      <div
         className="w-7/12 relative h-full overflow-hidden z-10 bg-cover bg-center"
         style={{
           backgroundImage: "url('/img/bg-project.jpg')",
         }}
       >
-        {/* Project Image - Centered */}
         <div className="absolute inset-0 flex items-center justify-center p-8">
-          <div className="relative w-full h-full">
-            <Image
-              src={project.image}
-              alt={project.name}
-              fill
-              className="object-contain"
-              sizes="60vw"
-              priority={index === 0}
-              quality={90}
-              loading={index === 0 ? "eager" : "lazy"}
-              placeholder="blur"
-              blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect fill='%23222' width='800' height='600'/%3E%3C/svg%3E"
-            />
-          </div>
+          <ImageSlider
+            images={project.images}
+            projectName={project.name}
+            isPriority={index === 0}
+          />
         </div>
-        
+
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-600/20 via-neutral-200/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/40 via-transparent to-transparent z-0 pointer-events-none" />
       </div>
     </div>
   );
@@ -229,15 +294,13 @@ const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps &
 
 DesktopProject.displayName = 'DesktopProject';
 
-// Composant principal avec CSS GRID
+// Composant principal
 function Projects() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isProjectsVisible, setIsProjectsVisible] = useState(false);
 
-  // Détecter si la section Projects est visible
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -250,11 +313,9 @@ function Projects() {
     );
 
     observer.observe(section);
-
     return () => observer.disconnect();
   }, []);
 
-  // Détecter le projet actif
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -273,18 +334,13 @@ function Projects() {
   return (
     <section
       ref={sectionRef}
+      id="projects"
       className="w-full lg:h-screen bg-black text-white relative z-10 lg:overflow-hidden pointer-events-auto"
     >
-      {/* Noise texture */}
       <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay z-0" />
 
-      {/* Grid Layout Container */}
       <div className="hidden lg:grid lg:grid-rows-[auto_1fr] h-full w-full">
-        {/* Header - Auto height */}
-        <header 
-          ref={headerRef}
-          className="relative w-full px-6 lg:px-16 pt-8 pb-6 z-50 bg-gradient-to-b from-black via-black/90 to-transparent"
-        >
+        <header className="relative w-full px-6 lg:px-16 pt-8 pb-6 z-50 bg-gradient-to-b from-black via-black/90 to-transparent">
           <div className="border-b border-white/10 pb-4 flex justify-between items-end">
             <div>
               <p className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-1">
@@ -294,15 +350,13 @@ function Projects() {
                 Projects
               </h2>
             </div>
-
             <div className="flex items-center gap-2 text-xs font-mono text-gray-500">
-              <span>SCROLL TO EXPLORE</span>
+              <span>EXPLORE BY SCROLLING</span>
               <span>↓</span>
             </div>
           </div>
         </header>
 
-        {/* Scroll Container - Takes remaining space */}
         <div
           ref={scrollContainerRef}
           className="w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth hide-scrollbar"
@@ -318,7 +372,6 @@ function Projects() {
         </div>
       </div>
 
-      {/* Scroll Indicators */}
       {isProjectsVisible && (
         <div className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 pointer-events-auto transition-all duration-300">
           {PROJECTS_DATA.map((_, index) => (
@@ -334,20 +387,17 @@ function Projects() {
                   });
                 }
               }}
-              className={`w-2 rounded-full transition-all duration-300 ${
-                index === activeIndex 
-                  ? 'h-12 bg-white' 
-                  : 'h-2 bg-white/30 hover:bg-white/50'
-              }`}
+              className={`w-2 rounded-full transition-all duration-300 ${index === activeIndex
+                ? 'h-12 bg-white'
+                : 'h-2 bg-white/30 hover:bg-white/50'
+                }`}
               aria-label={`Go to project ${index + 1}`}
             />
           ))}
         </div>
       )}
 
-      {/* Mobile - Vertical Cards */}
       <div className="lg:hidden w-full h-auto">
-        {/* Mobile Header - Sticky */}
         <div className="sticky top-0 w-full px-6 py-6 z-40 bg-black border-b border-white/10">
           <p className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-2">
             / Selected Works
@@ -357,7 +407,6 @@ function Projects() {
           </h2>
         </div>
 
-        {/* Cards Container */}
         <div className="px-6 py-8 space-y-20">
           {PROJECTS_DATA.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
