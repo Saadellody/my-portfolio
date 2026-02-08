@@ -15,21 +15,53 @@ const PROJECTS_DATA = [
     description:
       'Bibliotheque is a Laravel-based library management application. It provides book CRUD, categories, user management, REST API endpoints (with JWT auth), event/listener logging, database factories & seeders, and a Blade/Bootstrap frontend with asset pipeline via Laravel Mix.',
     technologies: ['PHP', 'Laravel 9', 'Blade', 'MySQL', 'Redis (predis)', 'JavaScript', 'Laravel Mix (Webpack)', 'Composer', 'tymon/jwt-auth', 'PHPUnit'],
-    images: [], // leave empty — you will add images
+    images: ['/img/biblio1.png','/img/biblio2.png','/img/bib3.png'], // leave empty — you will add images
     color: 'bg-emerald-600',
     github: 'https://github.com/Saadellody/Bibliotheque',
-  }
-  {
-    id: 2,
-    name: 'TresoNet',
-    category: 'Financial Management',
-    description:
-      'TresoNet is a robust treasury management system that helps organizations track cash flow, manage financial operations, and generate real-time reports for better financial decision-making.',
-    technologies: ['Laravel', 'Tailwind', 'MongoDB', 'Node.js', 'JavaScript'],
-    images: ['/img/tresonet.png'], // Modifié: tableau d'images
-    color: 'bg-emerald-600',
-    github: 'https://github.com/iamy4sser/TresoNet',
   },
+  {
+    id: 2, // Increment based on your project list
+    name: 'Elegence',
+    category: 'E-commerce / Luxury Retail',
+    description:
+      'LuxeParfum is a full-stack premium fragrance boutique application. It features a high-end shopping experience with real-time state management, secure user authentication via Laravel Sanctum, a dedicated Admin Dashboard for inventory control, and a responsive design optimized for luxury branding.',
+    technologies: [
+      'Laravel 11', 
+      'PHP', 
+      'React 19', 
+      'Vite', 
+      'Redux Toolkit', 
+      'Tailwind CSS v4', 
+      'Sanctum', 
+      'MySQL', 
+      'Axios'
+    ],
+    images: ['/img/elegence1.png','/img/elegence2.png','/img/elegence3.png','/img/elegence4.png','/img/elegence5.png'], // Replace these with your actual screenshot paths
+    color: 'bg-stone-800', // A sophisticated, neutral dark color fitting for luxury products
+    github: 'https://github.com/Saadellody/E-commerce_Parfums', // Based on your workspace name
+  },
+  {
+id: 3,
+name: 'EasySyndic',
+category: 'Property Management',
+description:
+'EasySyndic is a full-stack syndic/property-management platform that centralizes apartment and tenant data, manages charges and payments, generates PDFs/reports, and provides role-based dashboards for admins and proprietors to simplify building administration.',
+technologies: ['Java', 'Spring Boot', 'Maven', 'JPA/Hibernate', 'React', 'TypeScript', 'Vite', 'Redux (RTK Query)', 'REST APIs', 'WebSockets'],
+images: ['/img/easy1.png','/img/easy2.png','/img/easy3.png','/img/easy4.png','/img/easy5.png','/img/easy6.png'], // add your image paths here
+color: 'bg-sky-600',
+github: 'https://github.com/hammouyounes/EasySyndic', // add your GitHub URL here
+},
+{
+  id: 4,
+  name: 'PwTrace',
+  category: 'Agricultural Management',
+  description:
+    'PepperWorldTrace is a comprehensive agricultural management and traceability platform that centralizes plantation data, farm operations, crop measurements, and observations. Features real-time data tracking, role-based dashboards for farmers and administrators, QR code generation for traceability, PDF/Excel report generation, and integrated irrigation monitoring to streamline farming operations and ensure quality control.',
+  technologies: ['PHP', 'Laravel', 'MySQL', 'Eloquent ORM', 'Laravel Sanctum', 'jQuery', 'SASS', 'Laravel Mix', 'DOMPDF', 'PHPUnit', 'QR Code Generation', 'Excel Export'],
+  images: ['/img/pepper1.png'], // add your image paths here
+  color: 'bg-red-600',
+  github: '', // add your GitHub URL here
+}
 ] as const;
 
 // Composant ImageSlider pour gérer plusieurs photos
@@ -200,14 +232,20 @@ const ProjectCard = React.memo(({ project, index }: ProjectCardProps) => {
 
         {/* Link */}
         <div className="relative z-10">
-          <Link
-            href={project.github!}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors"
-          >
-            <span>{project.github}</span>
-          </Link>
+          {project.id === 3 ? (
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase border-b border-gray-500 pb-1 text-gray-400">
+              🔒 Private Repository
+            </span>
+          ) : (
+            <Link
+              href={project.github!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors"
+            >
+              <span>{project.github}</span>
+            </Link>
+          )}
         </div>
       </div>
     </article>
@@ -238,8 +276,28 @@ const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps &
             {project.description}
           </p>
 
+          {/* Link */}
+          <div className="pt-3 relative z-50 pointer-events-auto">
+            {project.id === 3 ? (
+              <div className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-400">
+                <div className="w-12 h-[1px] bg-gray-500" />
+                <span>🔒 Private Repository</span>
+              </div>
+            ) : (
+              <Link
+                href={project.github!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors cursor-pointer"
+              >
+                <div className="w-12 h-[1px] bg-white group-hover:bg-blue-400 group-hover:w-16 transition-all" />
+                <span>{project.github}</span>
+              </Link>
+            )}
+          </div>
+
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-2 pt-4">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
@@ -248,19 +306,6 @@ const DesktopProject = React.memo(({ project, index, total }: ProjectCardProps &
                 {tech}
               </span>
             ))}
-          </div>
-
-          {/* Link */}
-          <div className="pt-2 relative z-50 pointer-events-auto">
-            <Link
-              href={project.github!}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors cursor-pointer"
-            >
-              <div className="w-12 h-[1px] bg-white group-hover:bg-blue-400 group-hover:w-16 transition-all" />
-              <span>{project.github}</span>
-            </Link>
           </div>
         </div>
 
